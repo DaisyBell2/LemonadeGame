@@ -7,10 +7,12 @@ import org.junit.Test
 class GameViewModelTest {
 
     private lateinit var viewModel: GameViewModel
+    private lateinit var repository: FakeRepository
 
     @Before
     fun setup() {
-        viewModel = GameViewModel(repository = FakeRepository())
+        repository = FakeRepository()
+        viewModel = GameViewModel(repository = repository)
     }
 
     /**
@@ -18,28 +20,30 @@ class GameViewModelTest {
      */
     @Test
     fun caseNumber1() {
-        val actual: GameUiState = viewModel.init()
-        val expected: GameUiState = GameUiState.Initial(countTaps = 2)
+        var actual: GameUiState = viewModel.init()
+        repository.squeezeCount(count = 2)
+        var expected: GameUiState = GameUiState.Initial
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 1)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 0)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.Lemonade()
+        actual = viewModel.clickImage()
+        expected = GameUiState.Lemonade
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.EmptyGlass()
+        actual = viewModel.clickImage()
+        expected = GameUiState.EmptyGlass
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.Initial(countTaps = 4)
+        actual = viewModel.clickImage()
+        repository.squeezeCount(count = 3)
+        expected = GameUiState.Initial
         assertEquals(expected, actual)
     }
 
@@ -48,36 +52,38 @@ class GameViewModelTest {
      */
     @Test
     fun caseNumber2() {
-        val actual: GameUiState = viewModel.init()
-        val expected: GameUiState = GameUiState.Initial(countTaps = 4)
+        var actual: GameUiState = viewModel.init()
+        repository.squeezeCount(count = 4)
+        var expected: GameUiState = GameUiState.Initial
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 3)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 2)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 1)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 0)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.Lemonade()
+        actual = viewModel.clickImage()
+        expected = GameUiState.Lemonade
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.EmptyGlass()
+        actual = viewModel.clickImage()
+        expected = GameUiState.EmptyGlass
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.Initial(countTaps = 3)
+        actual = viewModel.clickImage()
+        repository.squeezeCount(count = 3)
+        expected = GameUiState.Initial
         assertEquals(expected, actual)
     }
 
@@ -86,43 +92,64 @@ class GameViewModelTest {
      */
     @Test
     fun caseNumber3() {
-        val actual: GameUiState = viewModel.init()
-        val expected: GameUiState = GameUiState.Initial(countTaps = 3)
+        var actual: GameUiState = viewModel.init()
+        repository.squeezeCount(count = 3)
+        var expected: GameUiState = GameUiState.Initial
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 2)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 1)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.SqueezeLemon(countTaps = 0)
+        actual = viewModel.clickImage()
+        expected = GameUiState.SqueezeLemon
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.Lemonade()
+        actual = viewModel.clickImage()
+        expected = GameUiState.Lemonade
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.EmptyGlass()
+        actual = viewModel.clickImage()
+        expected = GameUiState.EmptyGlass
         assertEquals(expected, actual)
 
-        val actual: GameUiState = viewModel.clickImage()
-        val expected: GameUiState = GameUiState.Initial(countTaps = 3)
+        actual = viewModel.clickImage()
+        repository.squeezeCount(count = 2)
+        expected = GameUiState.Initial
         assertEquals(expected, actual)
     }
 }
 
 private class FakeRepository : GameRepository {
 
-    private var countTapsFake = 0
+    private var currentStep = 0
+    private var squeezeCount = 0
 
-    override fun next(countTaps: Int): Int {
-        countTapsFake = countTaps
-        countTapsFake--
-        return countTapsFake
+    fun squeezeCount(count: Int): Int {
+        squeezeCount = count
+        return squeezeCount
     }
+
+    override fun resetSqueezeCount() {
+        squeezeCount = (2..4).random()
+    }
+
+    override fun next(): Int {
+        when (currentStep) {
+            0 -> currentStep++
+            1 -> {
+                if (squeezeCount > 0) squeezeCount--
+                if (squeezeCount == 0) currentStep++
+            }
+
+            2 -> currentStep++
+            3 -> currentStep = 0
+        }
+        return currentStep
+    }
+
 }

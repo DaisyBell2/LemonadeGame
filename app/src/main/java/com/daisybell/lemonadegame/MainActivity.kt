@@ -21,7 +21,20 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val viewModel: GameViewModel = GameViewModel()
+        val viewModel: GameViewModel = GameViewModel(object : GameRepository {
+            override fun currentStep(): Int {
+                TODO("Not yet implemented")
+            }
+
+            override fun squeezeCount(count: Int): Int {
+                TODO("Not yet implemented")
+            }
+
+            override fun next(): Int {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         binding.image.setOnClickListener {
             val uiState: GameUiState = viewModel.clickImage()
