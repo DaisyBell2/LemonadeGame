@@ -20,7 +20,7 @@ class ScenarioTest {
      */
     @Test
     fun caseNumber1() {
-        gamePage = GamePage(countTaps = 2)
+        gamePage = GamePage()
         gamePage.assertInitialState()
 
         gamePage.clickImage()
@@ -44,7 +44,7 @@ class ScenarioTest {
      */
     @Test
     fun caseNumber2() {
-        gamePage = GamePage(countTaps = 4)
+        gamePage = GamePage()
         gamePage.assertInitialState()
 
         gamePage.clickImage()
@@ -74,7 +74,7 @@ class ScenarioTest {
      */
     @Test
     fun caseNumber3() {
-        gamePage = GamePage(countTaps = 3)
+        gamePage = GamePage()
         gamePage.assertInitialState()
 
         gamePage.clickImage()

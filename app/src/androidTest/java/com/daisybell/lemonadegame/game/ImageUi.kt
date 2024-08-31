@@ -13,7 +13,6 @@ import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
 
 class ImageUi(
-    countTaps: Int,
     containerIdMatcher: Matcher<View>,
     containerClassTypeMatcher: Matcher<View>
 ) {
