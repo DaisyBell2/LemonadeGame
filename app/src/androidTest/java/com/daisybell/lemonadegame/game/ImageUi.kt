@@ -1,7 +1,7 @@
 package com.daisybell.lemonadegame.game
 
 import android.view.View
-import android.widget.ImageView
+import android.widget.ImageButton
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -22,8 +22,8 @@ class ImageUi(
         allOf(
             containerIdMatcher,
             containerClassTypeMatcher,
-            withId(R.id.imageView),
-            isAssignableFrom(ImageView::class.java)
+            withId(R.id.image),
+            isAssignableFrom(ImageButton::class.java)
         )
     )
 
