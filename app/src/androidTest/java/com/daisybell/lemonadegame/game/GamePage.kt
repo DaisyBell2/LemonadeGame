@@ -11,7 +11,7 @@ import org.hamcrest.Matcher
 /**
  * @author DaisyBell on 31.08.2024
  */
-class GamePage(countTaps: Int) {
+class GamePage() {
 
     // region fields
     private val containerIdMatcher: Matcher<View> = withParent(withId(R.id.rootLayout))
@@ -20,7 +20,6 @@ class GamePage(countTaps: Int) {
         withParent(isAssignableFrom(LinearLayout::class.java))
 
     private val imageUi = ImageUi(
-        countTaps = countTaps,
         containerIdMatcher = containerIdMatcher,
         containerClassTypeMatcher = containerClassTypeMatcher
     )
