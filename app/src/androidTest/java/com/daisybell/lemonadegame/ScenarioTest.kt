@@ -2,6 +2,7 @@ package com.daisybell.lemonadegame
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.daisybell.lemonadegame.game.GamePage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,19 +23,19 @@ class ScenarioTest {
         gamePage = GamePage(countTaps = 2)
         gamePage.assertInitialState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertLemonadeState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertEmptyGlassState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertInitialState()
     }
 
@@ -46,25 +47,25 @@ class ScenarioTest {
         gamePage = GamePage(countTaps = 4)
         gamePage.assertInitialState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertLemonadeState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertEmptyGlassState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertInitialState()
     }
 
@@ -76,22 +77,22 @@ class ScenarioTest {
         gamePage = GamePage(countTaps = 3)
         gamePage.assertInitialState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertSqueezeLemonState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertLemonadeState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertEmptyGlassState()
 
-        gamePage.clickScreen()
+        gamePage.clickImage()
         gamePage.assertInitialState()
     }
 }
